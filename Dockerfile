@@ -1,13 +1,21 @@
 FROM nvcr.io/nvidia/cuda:12.1.0-devel-ubuntu22.04
 
-RUN apt-get update && apt-get -y install python3.10 python3-pip openmpi-bin libopenmpi-dev git git-lfs
+ARG TENSORRT_LLM_VERSION=0.9.0
 
-RUN pip3 install tensorrt_llm -U --pre --extra-index-url https://pypi.nvidia.com
+RUN apt-get update && \
+    apt-get -y install \
+      git \
+      git-lfs \
+      libopenmpi-dev \
+      openmpi-bin \
+      python3.10 \
+      python3-pip \
+    && rm -rf /var/lib/apt/lists/*
 
-RUN git clone https://github.com/NVIDIA/TensorRT-LLM.git
+RUN pip3 install tensorrt_llm==$TENSORRT_LLM_VERSION -U --extra-index-url https://pypi.nvidia.com
+
+RUN git clone -b v$TENSORRT_LLM_VERSION https://github.com/NVIDIA/TensorRT-LLM.git
 
 WORKDIR TensorRT-LLM
 
-RUN pip install -r examples/bloom/requirements.txt
-
-RUN git lfs install
+RUN pip install -r examples/bloom/requirements.txt && git lfs install
