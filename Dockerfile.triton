@@ -1,5 +1,5 @@
 FROM nvcr.io/nvidia/tritonserver:24.03-trtllm-python-py3
 
-ARG TENSORRT_LLM_VERSION=0.9.0
+ARG TENSORRT_LLM_VERSION=0.8.0
 
-RUN pip install tensorrt_llm==$TENSORRT_LLM_VERSION sentencepiece protobuf
+RUN pip install sentencepiece protobuf
