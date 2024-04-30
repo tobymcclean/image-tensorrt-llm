@@ -18,4 +18,4 @@ RUN git clone -b v$TENSORRT_LLM_VERSION https://github.com/NVIDIA/TensorRT-LLM.g
 
 WORKDIR TensorRT-LLM
 
-RUN pip install -r examples/bloom/requirements.txt && git lfs install
+RUN git lfs install
