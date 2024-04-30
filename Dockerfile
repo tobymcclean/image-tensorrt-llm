@@ -1,6 +1,6 @@
 FROM nvcr.io/nvidia/cuda:12.1.0-devel-ubuntu22.04
 
-ARG TENSORRT_LLM_VERSION=0.9.0
+ARG TENSORRT_LLM_VERSION=0.8.0
 
 RUN apt-get update && \
     apt-get -y install \
